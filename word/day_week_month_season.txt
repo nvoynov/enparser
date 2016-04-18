@@ -1,0 +1,8 @@
+day week month season year
+now today tomorrow yesterday eve
+Monday Tuesday Wednesday Thursday Friday Saturday Sunday
+December January February
+March April May
+June July August
+September October November
+winter spring summer autumn
