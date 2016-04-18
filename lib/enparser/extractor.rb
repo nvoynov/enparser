@@ -75,6 +75,7 @@ module Enparser
       @words.each {|k, v| yield(k, v, @forms[k].keys.join(', ')) }
     end
 
+    # TODO make some lists and put it into data directory
     def load_skip_deafult
 %{
 I he she it you we they

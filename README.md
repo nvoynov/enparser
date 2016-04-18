@@ -1,6 +1,6 @@
 # Enparser
 
-Enparser is a simple and efficient Command Line Interface tool to segment by phrases and extract word lemmas from plain English text. It works only for English.
+Enparser is a simple Command Line Interface tool to segment by phrases and extract word lemmas from plain English text. It works only for English.
 
 There is nothing new under the Sun and it was possible thanks to existence three great gems - [pragmatic_segmenter](https://github.com/diasks2/pragmatic_segmenter),  [lemmatizer](https://github.com/yohasebe/lemmatizer), and [thor](https://github.com/erikhuda/thor). Many thanks to their authors.
 
@@ -149,6 +149,15 @@ Now I start using this cli to extract new words from texts (TV show subtitles an
 * extract all words and output only lemmas `enparse subtitle-file.srt --strict-by-lemmas > known-words.txt`;
 * delete unknown words form `known-words.txt` by hands;
 * and skip `known-words.txt` by second iteration `enparse subtitle-file.srt known-words.txt > unknown-words.txt`
+
+### Phrasal verbs?
+
+`WordNet` divide words by part of speech - noun, verb, adv, adj. It is possible extend by prepositions, and then try to analyze patterns
+* verb + prep,
+* verb + pronoun + prep,
+* verb + noun + verb + prep.
+
+Unfortunately, current implementation of `lemmalizer` don't allow to return part of speech for word. It'll require some modifications.
 
 ## Development
 
