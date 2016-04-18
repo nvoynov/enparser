@@ -101,32 +101,7 @@ Extract words, lemma, forms and frequency to STDOUT
 
 Each `SKIP_SOURCE` file can contain string of words separated by spaces. You can see content of default words to skip bellow as an example. `SKIP_SOURCES` accepts file name, file patters, and all possible combinations. Each next skip part must be followed after `;`. For example `basic-set.txt;tvshow-learned*.txt;`
 
-By default command `lemmatize` uses the next predefined pragmatic set of words to skip. This loading can be skipped by option `--no-load-default`:
-```
-I he she it you we they
-my me him his her its us our their your yours them self
-a an the this that these those all that's
-here there
-be do have will not want
-can can't cannot could couldn't must mustn't should shouldn't may might mayn't mightn't won't would
-I'm he's she's it's we're they're i've they've he'd she'd we've
-isn't aren't don't doesn't didn't weren't wasn't haven't hadn't hasn't
-who who's what what's where when whose which how why
-if then else unless for from till until while begin end start finish though although because true false any
-and also or yes no not for to at as of on by but about just in with so too up down left right bottom before after back out more less than
-one two three four five six seven eight nine ten eleven twelf
-first last second third
-now day eve today tomorrow yesterday
-month january february march april may june july august september october november december
-season year winter spring summer autumn
-week Monday Tuesday Wednesday Thursday Friday Saturday Sunday
-mr. ms.
-go try know let make take say find need see get tell think mean ask time move call buy talk thank use
-every each very
-ever never even
-name thing anything nothing other another
-gonna wanna
-```
+By default command `lemmatize` uses the predefined set of words to skip. These words are grouped and placed under `word` gem folder. They are pronouns, prepositions, basic verbs `do be have` and modals. You can skip this loading by option `--no-load-default`:
 
 Just for example, there is a fragment of lemmatize 570 pages book result:
 ```
@@ -149,15 +124,6 @@ Now I start using this cli to extract new words from texts (TV show subtitles an
 * extract all words and output only lemmas `enparse subtitle-file.srt --strict-by-lemmas > known-words.txt`;
 * delete unknown words form `known-words.txt` by hands;
 * and skip `known-words.txt` by second iteration `enparse subtitle-file.srt known-words.txt > unknown-words.txt`
-
-### Phrasal verbs?
-
-`WordNet` divide words by part of speech - noun, verb, adv, adj. It is possible extend by prepositions, and then try to analyze patterns
-* verb + prep,
-* verb + pronoun + prep,
-* verb + noun + verb + prep.
-
-Unfortunately, current implementation of `lemmalizer` don't allow to return part of speech for word. It'll require some modifications.
 
 ## Development
 
