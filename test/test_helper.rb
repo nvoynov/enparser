@@ -1,8 +1,8 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'enparser'
-
 require 'minitest/autorun'
 
+def get_data_path; return 'test/data'; end;
 
 def capture_stdout
   real_stdout = $stdout

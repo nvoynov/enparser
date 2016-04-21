@@ -4,9 +4,9 @@ include Enparser
 
 describe Cli do
 
-  FILE_NAME = 'test.srt'.freeze
-  SKIP_WORD = 'test.skip.txt'.freeze
-  SKIP_REGX = 'test.skip.patterns'.freeze
+  FILE_NAME = get_data_path + '/test.srt'
+  SKIP_WORD = get_data_path + '/test.skip.txt'
+  SKIP_REGX = get_data_path + '/test.rex'
 
   CLEAR_SEGMENTED = %(My name is Alex Parrish.
 I'm an FBI agent.
@@ -53,22 +53,6 @@ blow 1 (blew)
 still 1
 trainee 1
 ).freeze
-
-  def init_spec
-    s = StringIO.new(DATA.read)
-    File.write(FILE_NAME, s.string)
-    File.write(SKIP_WORD, 'alex parrish fbi grand central terminal')
-    File.open(SKIP_REGX, 'w') do |f|
-      f.puts '^\n$'
-      f.puts '^(\d)+$'
-      f.puts '^\d{2}:\d{2}:\d{2},\d{3} --> \d{2}:\d{2}:\d{2},\d{3}$'
-    end
-    true
-  end
-
-  before do
-    Kernel::suppress_warnings { @@initialized ||= init_spec }
-  end
 
   # enparse segment FILE_NAME [SKIP_PATTERNS]
   describe '#segment commnad' do
@@ -122,28 +106,9 @@ trainee 1
     # only lemma
     it 'must lemmatize FILE_NAME -l' do
       stdout = capture_stdout { Cli.start(['lemmatize', FILE_NAME, SKIP_WORD, '-l'])}
-      check_words = "agent terrorist blow still trainee"
+      check_words = "terrorist blow still"
       stdout.each_line { |l| check_words.include?(l.chomp).must_equal true }
     end
 
   end
 end
-
-__END__
-
-1
-00:00:01,202 --> 00:00:02,594
-My name is Alex Parrish.
-
-2
-00:00:02,720 --> 00:00:03,827
-I'm an FBI agent.
-
-3
-00:00:03,944 --> 00:00:06,319
-In July, a terrorist blew
-up Grand Central Terminal,
-
-4
-00:00:06,320 --> 00:00:08,346
-but before that, I was still a trainee.

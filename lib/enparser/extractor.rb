@@ -64,8 +64,11 @@ module Enparser
       end
     end
 
-    def parse_file(file)
-      File.foreach(file) {|l| extract(l)}
+    def parse_files(file_pattern)
+      files = Dir.glob(file_pattern.split(';')).flatten.uniq
+      files.each do |f|
+        File.foreach(f) {|l| extract(l)}
+      end
     end
 
     def sort!

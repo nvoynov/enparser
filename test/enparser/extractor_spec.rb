@@ -70,14 +70,7 @@ describe Extractor do
 		@extractor.each do |word, count, forms|
       extracted << "#{word};#{count};#{forms}"
 		end
-    puts check_result
-    puts extracted
     extracted.each {|e| check_result.include?(e).must_equal true}
   end
-  # 
-  # it 'must load_skip_deafult' do
-  #   @extractor.load_skip_deafult
-  #   puts @extractor.skips.keys
-  # end
 
 end

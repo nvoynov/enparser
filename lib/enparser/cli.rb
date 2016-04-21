@@ -22,7 +22,7 @@ module Enparser
       lemmatizer = Enparser::Extractor.new
       lemmatizer.load_skip_deafult if options['load-default']
       lemmatizer.load_skip_file(skip_sources) unless skip_sources.empty?
-      lemmatizer.parse_file(file_name)
+      lemmatizer.parse_files(file_name)
       sep = options[:separator]
       lemmatizer.each do |word, count, forms|
         line = String.new(word)

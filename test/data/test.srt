@@ -1,0 +1,17 @@
+
+1
+00:00:01,202 --> 00:00:02,594
+My name is Alex Parrish.
+
+2
+00:00:02,720 --> 00:00:03,827
+I'm an FBI agent.
+
+3
+00:00:03,944 --> 00:00:06,319
+In July, a terrorist blew
+up Grand Central Terminal,
+
+4
+00:00:06,320 --> 00:00:08,346
+but before that, I was still a trainee.

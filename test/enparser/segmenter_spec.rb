@@ -2,6 +2,10 @@ require_relative '../test_helper'
 include Enparser
 
 describe Segmenter do
+
+  TEST_FILE = get_data_path + '/test.txt'
+  TEST_REGX = get_data_path + '/test.rex'
+
   before do
     @segmenter = Segmenter.new
   end
@@ -29,30 +33,15 @@ describe Segmenter do
       @segmenter.skip?("\n").must_equal true
       @segmenter.skip?("1").must_equal true
       @segmenter.skip?("00:00:01,202 --> 00:00:02,594").must_equal true
-
-      # text = StringIO.new
-      # text.puts ""
-      # text.puts "1"
-      # text.puts "00:00:01,202 --> 00:00:02,594"
-      # text.puts "My name is Alex Parrish."
-      # text.puts ""
-      # text.puts "2"
-      # text.puts "00:00:02,720 --> 00:00:03,827"
-      # text.puts "I'm an FBI agent."
-      #
-      # text.pos = 0
-      # segments = []
-      # @segmenter.segment_stream(text) {|s| segments << s}
-      # segments.join(' ').must_equal "My name is Alex Parrish. I'm an FBI agent."
     end
 
     it 'must load skip patterns from file' do
-      File.open('test.skip.patterns', 'w') do |f|
+      File.open(TEST_REGX, 'w') do |f|
         f.puts '^\n$'
         f.puts '^(\d)+$'
         f.puts '^\d{2}:\d{2}:\d{2},\d{3} --> \d{2}:\d{2}:\d{2},\d{3}$'
       end
-      @segmenter.load_skip_patters('skip.patterns')
+      @segmenter.load_skip_patters(TEST_REGX)
       @segmenter.skip?("\n").must_equal true
       @segmenter.skip?("1").must_equal true
       @segmenter.skip?("00:00:01,202 --> 00:00:02,594").must_equal true
@@ -83,7 +72,7 @@ describe Segmenter do
     end
 
     it 'must segment file' do
-      File.open('test.txt', 'w') do |f|
+      File.open(TEST_FILE, 'w') do |f|
         f.puts "My name is Alex Parrish."
         f.puts "I'm an FBI agent."
         f.puts "In July, a terrorist blew"
@@ -92,7 +81,7 @@ describe Segmenter do
       end
 
       segments = []
-      @segmenter.segment_file('test.txt') {|s| segments << s}
+      @segmenter.segment_file(TEST_FILE) {|s| segments << s}
       segments[0].must_equal "My name is Alex Parrish."
       segments[1].must_equal "I'm an FBI agent."
       segments[2].must_equal "In July, a terrorist blew up Grand Central Terminal, but before that, I was still a trainee."

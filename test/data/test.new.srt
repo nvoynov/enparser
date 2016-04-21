@@ -1,0 +1,27 @@
+1
+00:00:00,191 --> 00:00:02,694
+<i>My name is Alex
+Parrish. I'm an FBI agent.</i>
+
+2
+00:00:02,861 --> 00:00:04,163
+<i>In July, a terrorist</i>
+
+3
+00:00:04,164 --> 00:00:06,560
+<i>blew up Grand Central
+terminal in New York.</i>
+
+4
+00:00:06,596 --> 00:00:09,096
+<i>Nine months before
+that, I was still a trainee.</i>
+
+5
+00:00:09,131 --> 00:00:12,366
+<i>These people were my friends...
+at least, I thought they were.</i>
+
+6
+00:00:12,401 --> 00:00:13,934
+<i>One of them is a terrorist.</i>
