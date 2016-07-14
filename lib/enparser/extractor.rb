@@ -84,34 +84,9 @@ module Enparser
 
     # TODO make some lists and put it into data directory
     def load_skip_deafult
-      load_skip_file('word/*')
+      skip_pattern = File.join Enparser.root, 'lib/skip_words/*'
+      load_skip_file(skip_pattern)
     end
-# %{
-# I he she it you we they
-# my me him his her its us our their your yours them self
-# a an the this that these those all that's
-# here there
-# be do have will not want
-# can can't cannot could couldn't must mustn't should shouldn't may might mayn't mightn't won't would
-# I'm he's she's it's we're they're i've they've he'd she'd we've
-# isn't aren't don't doesn't didn't weren't wasn't haven't hadn't hasn't
-# who who's what what's where when whose which how why
-# if then else unless for from till until while begin end start finish though although because true false any
-# and also or yes no not for to at as of on by but about just in with so too up down left right bottom before after back out more less than
-# one two three four five six seven eight nine ten eleven twelf
-# first last second third
-# now day eve today tomorrow yesterday
-# month january february march april may june july august september october november december
-# season year winter spring summer autumn
-# week Monday Tuesday Wednesday Thursday Friday Saturday Sunday
-# mr. ms.
-# go try know let make take say find need see get tell think mean ask time move call buy talk thank use
-# every each very
-# ever never even
-# name thing anything nothing other another
-# gonna wanna
-# }.each_line {|l| skip_line(l)}
-#     end
   end
 
 end
